@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "733982675193",
+    "project_id": "tansport-manager",
+    "storage_bucket": "tansport-manager.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733982675193:android:92bd2c9831397c1ee9d228",
+        "android_client_info": {
+          "package_name": "com.alphacode98.tansportmanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733982675193-evabokfid866i0jq5fplh2dvjohn2dcp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG9B_vM4wbCq0QKcxoP-wTTnfb-wA1M5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733982675193-evabokfid866i0jq5fplh2dvjohn2dcp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
