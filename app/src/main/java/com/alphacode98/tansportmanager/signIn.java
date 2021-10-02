@@ -1,8 +1,10 @@
 package com.alphacode98.tansportmanager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.LoggedUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +25,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.sdsmdg.tastytoast.TastyToast;
 
 public class signIn extends AppCompatActivity {
@@ -35,6 +46,9 @@ public class signIn extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference userCollection = db.collection("users");
+
+    public User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,9 @@ public class signIn extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_sign_in);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        loggedUser = LoggedUser.getLoggedUser();
 
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -88,7 +105,22 @@ public class signIn extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        userCollection
+                                .whereEqualTo("email",email)
+                                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                                        if(!value.isEmpty()){
+                                            for(QueryDocumentSnapshot snapshot : value){
+                                                loggedUser.setName(snapshot.getString("name"));
+                                                break;
+                                            }
+                                        }
+                                    }
+                                });
 
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
