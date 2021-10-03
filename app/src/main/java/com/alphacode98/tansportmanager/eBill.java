@@ -19,17 +19,21 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.alphacode98.tansportmanager.Modal.Journey;
 import com.alphacode98.tansportmanager.Modal.User;
 import com.alphacode98.tansportmanager.Util.Location;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -55,6 +59,8 @@ public class eBill extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FusedLocationProviderClient locationProviderClient;
+
+    private int rootNo;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -100,6 +106,7 @@ public class eBill extends AppCompatActivity {
         getDestination();
         //calculateCost(startLocationTextView.getText().toString(),endLocationTextView.getText().toString());
         //updateUser();
+        //saveJourney();
     }
 
     private void updateUser() {
@@ -171,5 +178,42 @@ public class eBill extends AppCompatActivity {
         float distance = start[0].getDistance() - end[0].getDistance();
         if (distance < 0) distance = -1 * distance;
         distanceTextView.setText(Float.toString(distance));
+    }
+
+    public void saveJourney(){
+        Journey journey = new Journey();
+        journey.setDate(dateTextView.getText().toString().trim());
+        journey.setDistance(Float.parseFloat(distanceTextView.getText().toString().trim()));
+        journey.setEndLocation(endLocationTextView.getText().toString().trim());
+        journey.setEndTime(endTimeTextView.getText().toString().trim());
+        journey.setFare(Float.parseFloat(distanceTextView.getText().toString().trim()));
+        journey.setRootNo(rootNo);
+        journey.setStartLocation(startLocationTextView.getText().toString().trim());
+        journey.setStartTime(startTimeTextView.getText().toString().trim());
+
+        CollectionReference journeyCollection = db.collection("journey");
+        journeyCollection.add(journey)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        TastyToast.makeText(
+                                getApplicationContext(),
+                                "Journey is saved",
+                                TastyToast.LENGTH_LONG,
+                                TastyToast.SUCCESS
+                        );
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        TastyToast.makeText(
+                                getApplicationContext(),
+                                e.getLocalizedMessage(),
+                                TastyToast.LENGTH_LONG,
+                                TastyToast.ERROR
+                        );
+                    }
+                });
     }
 }
