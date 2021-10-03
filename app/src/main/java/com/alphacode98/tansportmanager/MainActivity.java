@@ -15,10 +15,11 @@ import com.alphacode98.tansportmanager.Util.LoggedUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView usernameTextView;
-    User loggedUser;
-    ImageButton topUpBtn;
-    ImageButton currentJourneyBtn;
+    private TextView usernameTextView;
+    private User loggedUser;
+    private ImageButton topUpBtn;
+    private ImageButton currentJourneyBtn;
+    private TextView balanceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
         usernameTextView = findViewById(R.id.usernameTextView);
         topUpBtn = findViewById(R.id.topUpBtn);
         currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
+        balanceTextView = findViewById(R.id.balanceText);
+
+        usernameTextView.setText(loggedUser.getName());
+        balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
 
         topUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override

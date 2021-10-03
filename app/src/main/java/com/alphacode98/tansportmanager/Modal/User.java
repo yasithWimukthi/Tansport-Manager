@@ -7,7 +7,7 @@ public class User {
     private String address;
     private String nic;
     private String type;
-    private int amount;
+    private float amount;
 
     public User() {
     }
@@ -69,11 +69,11 @@ public class User {
         this.type = type;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 }
