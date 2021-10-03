@@ -18,7 +18,9 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.alphacode98.tansportmanager.Modal.User;
 import com.alphacode98.tansportmanager.Util.Location;
+import com.alphacode98.tansportmanager.Util.LoggedUser;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,6 +50,8 @@ public class eBill extends AppCompatActivity {
     private TextView amountTextView;
     private ImageButton doneBtn;
 
+    private User loggedUser;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FusedLocationProviderClient locationProviderClient;
 
@@ -55,11 +59,12 @@ public class eBill extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_ebill);
+
+        loggedUser = LoggedUser.getLoggedUser();
 
         nameTextView = findViewById(R.id.passengerValue);
         dateTextView = findViewById(R.id.dateValue);
@@ -73,8 +78,8 @@ public class eBill extends AppCompatActivity {
 
         locationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        String time = String.valueOf(java.time.LocalDate.now());
-        dateTextView.setText(time);
+        String date = String.valueOf(java.time.LocalDate.now());
+        dateTextView.setText(date);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime localTime = LocalTime.now();
         endTimeTextView.setText(dtf.format(localTime));
@@ -89,6 +94,23 @@ public class eBill extends AppCompatActivity {
 
         getDestination();
         //calculateCost(startLocationTextView.getText().toString(),endLocationTextView.getText().toString());
+        //updateUser();
+    }
+
+    private void updateUser() {
+        // update user credit balance
+        final User[] user = {new User()};
+        DocumentReference docRef = db.collection("users").document(loggedUser.getEmail());
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                user[0] = documentSnapshot.toObject(User.class);
+            }
+        });
+
+        user[0].setAmount(user[0].getAmount() - Float.parseFloat(amountTextView.getText().toString()));
+
+        db.collection("users").add(user[0]);
     }
 
     private void getDestination() {
