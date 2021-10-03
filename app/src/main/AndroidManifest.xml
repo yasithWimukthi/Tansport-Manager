@@ -13,6 +13,7 @@
         android:theme="@style/Theme.TansportManager">
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".signUp"></activity>
+        <activity android:name=".topUp"></activity>
         <activity android:name=".signIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
