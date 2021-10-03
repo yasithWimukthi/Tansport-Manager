@@ -45,7 +45,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/passengerValue"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -92,7 +92,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/startTineValue"
+                    android:id="@+id/startTimeValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
