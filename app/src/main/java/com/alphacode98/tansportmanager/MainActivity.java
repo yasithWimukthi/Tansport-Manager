@@ -38,43 +38,46 @@ public class MainActivity extends AppCompatActivity {
         scanQrBtn = findViewById(R.id.scanQrBtn);
         myQrBtn = findViewById(R.id.myQrBtn);
 
-        scanQrBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),startJourney.class));
 
-        loggedUser = LoggedUser.getLoggedUser();
+                loggedUser = LoggedUser.getLoggedUser();
 
-        usernameTextView = findViewById(R.id.usernameTextView);
-        topUpBtn = findViewById(R.id.topUpBtn);
-        currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
-        balanceTextView = findViewById(R.id.balanceText);
+                usernameTextView = findViewById(R.id.usernameTextView);
+                topUpBtn = findViewById(R.id.topUpBtn);
+                currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
+                balanceTextView = findViewById(R.id.balanceText);
 
-        usernameTextView.setText(loggedUser.getName());
-        balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
+                usernameTextView.setText(loggedUser.getName());
+                balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
 
-        topUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),topUp.class);
-                startActivity(intent);
+                topUpBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplication(), topUp.class);
+                        startActivity(intent);
+                    }
+                });
+
+                currentJourneyBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplication(), currentJourney.class);
+                        startActivity(intent);
+
+                    }
+                });
+
+                myQrBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(), myQR.class));
+                    }
+                });
+
+                scanQrBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                      public void onClick(View v) {
+                          startActivity(new Intent(getApplicationContext(), startJourney.class));
+                     }
+                    });
             }
-        });
-
-        currentJourneyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),currentJourney.class);
-                startActivity(intent);
-
-            }
-        });
-
-        myQrBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),myQR.class));
-            }
-        });
-    }
-}
+        }
