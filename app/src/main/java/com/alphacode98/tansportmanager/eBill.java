@@ -19,17 +19,22 @@ import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.alphacode98.tansportmanager.Modal.Journey;
 import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.alphacode98.tansportmanager.Util.Location;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sdsmdg.tastytoast.TastyToast;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -56,6 +61,8 @@ public class eBill extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FusedLocationProviderClient locationProviderClient;
 
+    private int rootNo;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +73,7 @@ public class eBill extends AppCompatActivity {
         setContentView(R.layout.activity_ebill);
 
         loggedUser = LoggedUser.getLoggedUser();
-        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences sh = getSharedPreferences(CommonConstants.SHARED_PREFERENCES, MODE_PRIVATE);
 
         nameTextView = findViewById(R.id.passengerValue);
         dateTextView = findViewById(R.id.dateValue);
@@ -82,16 +89,23 @@ public class eBill extends AppCompatActivity {
 
         String date = String.valueOf(java.time.LocalDate.now());
         dateTextView.setText(date);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConstants.TIME_FORMAT);
         LocalTime localTime = LocalTime.now();
         endTimeTextView.setText(dtf.format(localTime));
         nameTextView.setText(loggedUser.getName());
-        startTimeTextView.setText(sh.getString("startTime",""));
-        startLocationTextView.setText(sh.getString("startLocation",""));
+        startTimeTextView.setText(sh.getString(CommonConstants.START_TIME,""));
+        startLocationTextView.setText(sh.getString(CommonConstants.START_LOCATION,""));
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString(CommonConstants.START_TIME,CommonConstants.EMPTY);
+                myEdit.putString(CommonConstants.START_LOCATION,CommonConstants.EMPTY);
+                myEdit.commit();
+
                 Intent intent = new Intent(getApplication(),MainActivity.class);
                 startActivity(intent);
             }
@@ -100,12 +114,13 @@ public class eBill extends AppCompatActivity {
         getDestination();
         //calculateCost(startLocationTextView.getText().toString(),endLocationTextView.getText().toString());
         //updateUser();
+        //saveJourney();
     }
 
     private void updateUser() {
         // update user credit balance
         final User[] user = {new User()};
-        DocumentReference docRef = db.collection("users").document(loggedUser.getEmail());
+        DocumentReference docRef = db.collection(CommonConstants.USERS_COLLECTION).document(loggedUser.getEmail());
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -115,7 +130,7 @@ public class eBill extends AppCompatActivity {
 
         user[0].setAmount(user[0].getAmount() - Float.parseFloat(amountTextView.getText().toString()));
 
-        db.collection("users").add(user[0]);
+        db.collection(CommonConstants.USERS_COLLECTION).add(user[0]);
     }
 
     private void getDestination() {
@@ -146,7 +161,7 @@ public class eBill extends AppCompatActivity {
     private void calculateCost(String startLocation, String destination) {
         final Location[] start = {new Location()};
         final Location[] end = {new Location()};
-        DocumentReference docRef = db.collection("cities").document(startLocation);
+        DocumentReference docRef = db.collection(CommonConstants.CITIES_COLLECTION).document(startLocation);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -154,7 +169,7 @@ public class eBill extends AppCompatActivity {
             }
         });
 
-        docRef = db.collection("cities").document(destination);
+        docRef = db.collection(CommonConstants.CITIES_COLLECTION).document(destination);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -171,5 +186,42 @@ public class eBill extends AppCompatActivity {
         float distance = start[0].getDistance() - end[0].getDistance();
         if (distance < 0) distance = -1 * distance;
         distanceTextView.setText(Float.toString(distance));
+    }
+
+    public void saveJourney(){
+        Journey journey = new Journey();
+        journey.setDate(dateTextView.getText().toString().trim());
+        journey.setDistance(distanceTextView.getText().toString().trim());
+        journey.setEndLocation(endLocationTextView.getText().toString().trim());
+        journey.setEndTime(endTimeTextView.getText().toString().trim());
+        journey.setFare(Float.parseFloat(distanceTextView.getText().toString().trim()));
+        journey.setRootNo(rootNo);
+        journey.setStartLocation(startLocationTextView.getText().toString().trim());
+        journey.setStartTime(startTimeTextView.getText().toString().trim());
+
+        CollectionReference journeyCollection = db.collection(CommonConstants.JOURNEY_COLLECTION);
+        journeyCollection.add(journey)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        TastyToast.makeText(
+                                getApplicationContext(),
+                                "Journey is saved",
+                                TastyToast.LENGTH_LONG,
+                                TastyToast.SUCCESS
+                        );
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        TastyToast.makeText(
+                                getApplicationContext(),
+                                e.getLocalizedMessage(),
+                                TastyToast.LENGTH_LONG,
+                                TastyToast.ERROR
+                        );
+                    }
+                });
     }
 }

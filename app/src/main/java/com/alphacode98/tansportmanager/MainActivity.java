@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-import android.widget.ImageButton;
-
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -16,15 +13,17 @@ import android.widget.TextView;
 import com.alphacode98.tansportmanager.Modal.User;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 
-
 public class MainActivity extends AppCompatActivity {
+
     ImageButton scanQrBtn,myQrBtn;
+
 
     private TextView usernameTextView;
     private User loggedUser;
     private ImageButton topUpBtn;
     private ImageButton currentJourneyBtn;
     private TextView balanceTextView;
+    private ImageButton scanQrBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,50 +33,40 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
+        loggedUser = LoggedUser.getLoggedUser();
 
+        usernameTextView = findViewById(R.id.usernameTextView);
+        topUpBtn = findViewById(R.id.topUpBtn);
+        currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
+        balanceTextView = findViewById(R.id.textView4);
         scanQrBtn = findViewById(R.id.scanQrBtn);
-        myQrBtn = findViewById(R.id.myQrBtn);
 
+        usernameTextView.setText(loggedUser.getName());
+        balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
 
-                loggedUser = LoggedUser.getLoggedUser();
+        topUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),topUp.class);
+                startActivity(intent);
+            }
+        });
 
-                usernameTextView = findViewById(R.id.usernameTextView);
-                topUpBtn = findViewById(R.id.topUpBtn);
-                currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
-                balanceTextView = findViewById(R.id.balanceText);
+        currentJourneyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),currentJourney.class);
+                startActivity(intent);
+            }
+        });
 
-                usernameTextView.setText(loggedUser.getName());
-                balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
+        scanQrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),startJourney.class);
+                startActivity(intent);
+            }
+        });
 
-                topUpBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplication(), topUp.class);
-                        startActivity(intent);
-                    }
-                });
-
-                currentJourneyBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplication(), currentJourney.class);
-                        startActivity(intent);
-
-                    }
-                });
-
-                myQrBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getApplicationContext(), myQR.class));
-                    }
-                });
-
-                scanQrBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                      public void onClick(View v) {
-                          startActivity(new Intent(getApplicationContext(), startJourney.class));
-                     }
-                    });
             }
         }
