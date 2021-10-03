@@ -15,13 +15,11 @@ import com.alphacode98.tansportmanager.Util.LoggedUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton scanQrBtn,myQrBtn;
-
-
     private TextView usernameTextView;
     private User loggedUser;
     private ImageButton topUpBtn;
     private ImageButton currentJourneyBtn;
+    private ImageButton myQrBtn;
     private TextView balanceTextView;
     private ImageButton scanQrBtn;
 
@@ -32,14 +30,14 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-
         loggedUser = LoggedUser.getLoggedUser();
 
         usernameTextView = findViewById(R.id.usernameTextView);
         topUpBtn = findViewById(R.id.topUpBtn);
         currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
-        balanceTextView = findViewById(R.id.textView4);
+        balanceTextView = findViewById(R.id.balanceText);
         scanQrBtn = findViewById(R.id.scanQrBtn);
+        myQrBtn = findViewById(R.id.myQrBtn);
 
         usernameTextView.setText(loggedUser.getName());
         balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
@@ -68,5 +66,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        myQrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),myQR.class);
+                startActivity(intent);
             }
-        }
+        });
+    }
+}
