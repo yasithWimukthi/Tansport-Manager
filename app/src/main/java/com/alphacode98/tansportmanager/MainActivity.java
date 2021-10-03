@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import android.widget.ImageButton;
+
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -13,7 +16,9 @@ import android.widget.TextView;
 import com.alphacode98.tansportmanager.Modal.User;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 
+
 public class MainActivity extends AppCompatActivity {
+    ImageButton scanQrBtn;
 
     private TextView usernameTextView;
     private User loggedUser;
@@ -28,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
+
+        scanQrBtn = findViewById(R.id.scanQrBtn);
+
+        scanQrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),startJourney.class));
+
         loggedUser = LoggedUser.getLoggedUser();
 
         usernameTextView = findViewById(R.id.usernameTextView);
@@ -51,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(),currentJourney.class);
                 startActivity(intent);
+
             }
         });
     }
