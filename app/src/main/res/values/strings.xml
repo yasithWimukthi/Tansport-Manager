@@ -27,4 +27,6 @@
     <string name="distance">Distance</string>
     <string name="journey_completed">Journey Completed!</string>
     <string name="start_journey">Start Journey</string>
+    <string name="my_qr_code">My QR Code</string>
+    <string name="genarate">Genarate</string>
 </resources>
