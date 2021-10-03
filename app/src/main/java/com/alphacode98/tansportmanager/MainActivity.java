@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     TextView usernameTextView;
     User loggedUser;
     ImageButton topUpBtn;
+    ImageButton currentJourneyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(),topUp.class);
+                startActivity(intent);
+            }
+        });
+
+        currentJourneyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),currentJourney.class);
                 startActivity(intent);
             }
         });

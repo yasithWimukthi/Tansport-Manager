@@ -14,6 +14,7 @@
         <activity android:name=".MainActivity"></activity>
         <activity android:name=".signUp"></activity>
         <activity android:name=".topUp"></activity>
+        <activity android:name=".currentJourney"></activity>
         <activity android:name=".signIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
