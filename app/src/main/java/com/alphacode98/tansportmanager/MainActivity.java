@@ -25,6 +25,5 @@ public class MainActivity extends AppCompatActivity {
         loggedUser = LoggedUser.getLoggedUser();
 
         usernameTextView = findViewById(R.id.usernameTextView);
-        usernameTextView.setText("yasith");
     }
 }
