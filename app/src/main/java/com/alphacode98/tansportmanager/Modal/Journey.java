@@ -10,13 +10,13 @@ public class Journey {
     private String endTime;
     private String startLocation;
     private String endLocation;
-    private float distance;
+    private String distance;
     private float fare;
 
     public Journey() {
     }
 
-    public Journey(int journeyId, int clientId, int rootNo, String vehicleNo, String date, String startTime, String endTime, String startLocation, String endLocation, float distance, float fare) {
+    public Journey(int journeyId, int clientId, int rootNo, String vehicleNo, String date, String startTime, String endTime, String startLocation, String endLocation, String distance, float fare) {
         this.journeyId = journeyId;
         this.clientId = clientId;
         this.rootNo = rootNo;
@@ -102,11 +102,11 @@ public class Journey {
         this.endLocation = endLocation;
     }
 
-    public float getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(float distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 

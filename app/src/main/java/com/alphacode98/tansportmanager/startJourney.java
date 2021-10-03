@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -19,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
@@ -61,14 +63,17 @@ public class startJourney extends AppCompatActivity {
                     @Override
                     public void run() {
                         //resultData.setText(result.getText());
-                        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+                        SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
-                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConstants.TIME_FORMAT);
                         LocalTime localTime = LocalTime.now();
-                        myEdit.putString("startTime",dtf.format(localTime));
+                        myEdit.putString(CommonConstants.START_TIME,dtf.format(localTime));
                         myEdit.commit();
                         getStartLocation();
+
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(intent);
                     }
                 });
             }
@@ -105,9 +110,9 @@ public class startJourney extends AppCompatActivity {
                             Geocoder geocoder = new Geocoder(startJourney.this, Locale.getDefault());
                             //initialize address list
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-                            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
                             SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                            myEdit.putString("startLocation",addresses.get(0).getAddressLine(0));
+                            myEdit.putString(CommonConstants.START_LOCATION,addresses.get(0).getAddressLine(0));
                             myEdit.commit();
 
                         } catch (IOException e) {

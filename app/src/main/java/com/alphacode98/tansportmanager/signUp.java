@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +39,7 @@ public class signUp extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference userCollection = db.collection("users");
+    private CollectionReference userCollection = db.collection(CommonConstants.USERS_COLLECTION);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

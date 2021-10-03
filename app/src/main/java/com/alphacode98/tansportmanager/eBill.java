@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.alphacode98.tansportmanager.Modal.Journey;
 import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.alphacode98.tansportmanager.Util.Location;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -72,7 +73,7 @@ public class eBill extends AppCompatActivity {
         setContentView(R.layout.activity_ebill);
 
         loggedUser = LoggedUser.getLoggedUser();
-        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences sh = getSharedPreferences(CommonConstants.SHARED_PREFERENCES, MODE_PRIVATE);
 
         nameTextView = findViewById(R.id.passengerValue);
         dateTextView = findViewById(R.id.dateValue);
@@ -88,16 +89,23 @@ public class eBill extends AppCompatActivity {
 
         String date = String.valueOf(java.time.LocalDate.now());
         dateTextView.setText(date);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConstants.TIME_FORMAT);
         LocalTime localTime = LocalTime.now();
         endTimeTextView.setText(dtf.format(localTime));
         nameTextView.setText(loggedUser.getName());
-        startTimeTextView.setText(sh.getString("startTime",""));
-        startLocationTextView.setText(sh.getString("startLocation",""));
+        startTimeTextView.setText(sh.getString(CommonConstants.START_TIME,""));
+        startLocationTextView.setText(sh.getString(CommonConstants.START_LOCATION,""));
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putString(CommonConstants.START_TIME,CommonConstants.EMPTY);
+                myEdit.putString(CommonConstants.START_LOCATION,CommonConstants.EMPTY);
+                myEdit.commit();
+
                 Intent intent = new Intent(getApplication(),MainActivity.class);
                 startActivity(intent);
             }
@@ -112,7 +120,7 @@ public class eBill extends AppCompatActivity {
     private void updateUser() {
         // update user credit balance
         final User[] user = {new User()};
-        DocumentReference docRef = db.collection("users").document(loggedUser.getEmail());
+        DocumentReference docRef = db.collection(CommonConstants.USERS_COLLECTION).document(loggedUser.getEmail());
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -122,7 +130,7 @@ public class eBill extends AppCompatActivity {
 
         user[0].setAmount(user[0].getAmount() - Float.parseFloat(amountTextView.getText().toString()));
 
-        db.collection("users").add(user[0]);
+        db.collection(CommonConstants.USERS_COLLECTION).add(user[0]);
     }
 
     private void getDestination() {
@@ -153,7 +161,7 @@ public class eBill extends AppCompatActivity {
     private void calculateCost(String startLocation, String destination) {
         final Location[] start = {new Location()};
         final Location[] end = {new Location()};
-        DocumentReference docRef = db.collection("cities").document(startLocation);
+        DocumentReference docRef = db.collection(CommonConstants.CITIES_COLLECTION).document(startLocation);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -161,7 +169,7 @@ public class eBill extends AppCompatActivity {
             }
         });
 
-        docRef = db.collection("cities").document(destination);
+        docRef = db.collection(CommonConstants.CITIES_COLLECTION).document(destination);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -183,7 +191,7 @@ public class eBill extends AppCompatActivity {
     public void saveJourney(){
         Journey journey = new Journey();
         journey.setDate(dateTextView.getText().toString().trim());
-        journey.setDistance(Float.parseFloat(distanceTextView.getText().toString().trim()));
+        journey.setDistance(distanceTextView.getText().toString().trim());
         journey.setEndLocation(endLocationTextView.getText().toString().trim());
         journey.setEndTime(endTimeTextView.getText().toString().trim());
         journey.setFare(Float.parseFloat(distanceTextView.getText().toString().trim()));
@@ -191,7 +199,7 @@ public class eBill extends AppCompatActivity {
         journey.setStartLocation(startLocationTextView.getText().toString().trim());
         journey.setStartTime(startTimeTextView.getText().toString().trim());
 
-        CollectionReference journeyCollection = db.collection("journey");
+        CollectionReference journeyCollection = db.collection(CommonConstants.JOURNEY_COLLECTION);
         journeyCollection.add(journey)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

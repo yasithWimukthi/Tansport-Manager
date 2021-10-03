@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,7 +42,7 @@ public class signIn extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference userCollection = db.collection("users");
+    private CollectionReference userCollection = db.collection(CommonConstants.USERS_COLLECTION);
 
     public User loggedUser;
 
@@ -109,13 +110,13 @@ public class signIn extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         userCollection
-                                .whereEqualTo("email",email)
+                                .whereEqualTo(CommonConstants.EMAIL,email)
                                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                     @Override
                                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                                         if(!value.isEmpty()){
                                             for(QueryDocumentSnapshot snapshot : value){
-                                                loggedUser.setName(snapshot.getString("name"));
+                                                loggedUser.setName(snapshot.getString(CommonConstants.NAME));
                                                 break;
                                             }
                                         }

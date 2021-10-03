@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 
 public class currentJourney extends AppCompatActivity {
@@ -47,9 +48,9 @@ public class currentJourney extends AppCompatActivity {
         backToHomeBtn = findViewById(R.id.doneBtn);
 
         // get shared preferences
-        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        startTimeTextView.setText(sh.getString("startTime",""));
-        startLocationTextView.setText(sh.getString("startLocation",""));
+        SharedPreferences sh = getSharedPreferences(CommonConstants.SHARED_PREFERENCES, MODE_PRIVATE);
+        startTimeTextView.setText(sh.getString(CommonConstants.START_TIME,CommonConstants.EMPTY));
+        startLocationTextView.setText(sh.getString(CommonConstants.START_LOCATION,CommonConstants.EMPTY));
 
         String date = String.valueOf(java.time.LocalDate.now());
         dateTextView.setText(date);
