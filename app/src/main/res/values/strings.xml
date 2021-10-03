@@ -15,4 +15,11 @@
     <string name="password">Password</string>
     <string name="top_up">Top Up</string>
     <string name="insert_amount">Insert Amount</string>
+    <string name="current_journey_details">Current Journey Details</string>
+    <string name="passanger">Passanger :</string>
+    <string name="user_name">User Name</string>
+    <string name="date">Date</string>
+    <string name="start_time">Start Time</string>
+    <string name="start_location">Start Location</string>
+    <string name="passenger">Passenger</string>
 </resources>
