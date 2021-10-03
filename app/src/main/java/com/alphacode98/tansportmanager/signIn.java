@@ -61,7 +61,7 @@ public class signIn extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         loggedUser = LoggedUser.getLoggedUser();
 
-        emailEditText = findViewById(R.id.emailEditText);
+        emailEditText = findViewById(R.id.editTextTextEmailAddress2);
         passwordEditText = findViewById(R.id.passwordEditText);
         signInBtn = findViewById(R.id.signInBtn);
         signUpTextView = findViewById(R.id.signUpTxt);
@@ -96,6 +96,14 @@ public class signIn extends AppCompatActivity {
                 }else{
                     loginWithEmailAndPassword(email, password);
                 }
+            }
+        });
+
+        signUpTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),signUp.class);
+                startActivity(intent);
             }
         });
     }
