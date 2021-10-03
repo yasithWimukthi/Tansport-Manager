@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -65,6 +66,7 @@ public class eBill extends AppCompatActivity {
         setContentView(R.layout.activity_ebill);
 
         loggedUser = LoggedUser.getLoggedUser();
+        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
         nameTextView = findViewById(R.id.passengerValue);
         dateTextView = findViewById(R.id.dateValue);
@@ -83,6 +85,9 @@ public class eBill extends AppCompatActivity {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalTime localTime = LocalTime.now();
         endTimeTextView.setText(dtf.format(localTime));
+        nameTextView.setText(loggedUser.getName());
+        startTimeTextView.setText(sh.getString("startTime",""));
+        startLocationTextView.setText(sh.getString("startLocation",""));
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
