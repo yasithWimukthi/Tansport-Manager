@@ -4,42 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:nestedScrollingEnabled="true"
     android:orientation="vertical"
-    tools:context=".startJourney"
-    android:layout_margin="20dp">
+    tools:context=".startJourney">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/start_journey"
-        android:textSize="24sp"
         android:layout_marginVertical="20dp"
-        android:textAlignment="center"/>
+        android:text="@string/start_journey"
+        android:textAlignment="center"
+        android:textSize="24sp" />
 
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scannerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="376dp"
         app:autoFocusButtonColor="@android:color/white"
-        app:autoFocusButtonVisible="true"
+        app:autoFocusButtonVisible="false"
         app:flashButtonColor="@android:color/white"
-        app:flashButtonVisible="true"
-        app:frameColor="@android:color/white"
-        app:frameCornersSize="50dp"
-        app:frameCornersRadius="0dp"
-        app:frameAspectRatioWidth="1"
+        app:flashButtonVisible="false"
         app:frameAspectRatioHeight="1"
+        app:frameAspectRatioWidth="1"
+        app:frameColor="@android:color/white"
+        app:frameCornersRadius="0dp"
+        app:frameCornersSize="50dp"
         app:frameSize="0.75"
         app:frameThickness="2dp"
-        app:maskColor="#77000000"/>
+        app:maskColor="#77000000" />
 
 
     <TextView
         android:id="@+id/resultsOfQr"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:text="TextView" />
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:textSize="16sp" />
 
     <ImageButton
         android:id="@+id/startButton"
