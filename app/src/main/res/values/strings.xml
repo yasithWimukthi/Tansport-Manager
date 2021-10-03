@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Tansport Manager</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="local_user">Local User</string>
+    <string name="foreign_user">Foreign User</string>
+    <string name="select_user_type">Select User Type:</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="nic_passport">NIC / Passport</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="passsword">Passsword</string>
+    <string name="have_an_account">Have an Account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="password">Password</string>
 </resources>

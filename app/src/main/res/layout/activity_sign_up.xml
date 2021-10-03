@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".signUp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:textAlignment="center"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA00E9"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:textColorHint="#CA00E9"
+                android:layout_marginTop="50dp"
+                />
+
+            <EditText
+                android:id="@+id/editTextTextNICPassport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA00E9"
+                android:ems="10"
+                android:hint="@string/nic_passport"
+                android:inputType="textPersonName"
+                android:textColorHint="#CA00E9"
+                android:layout_marginTop="5dp"/>
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA00E9"
+                android:ems="10"
+                android:hint="@string/mobile"
+                android:inputType="phone"
+                android:textColorHint="#CA00E9"
+                android:layout_marginTop="5dp"/>
+
+            <EditText
+                android:id="@+id/editTextTextEmailAddress2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA00E9"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#CA00E9"
+                android:layout_marginTop="5dp"/>
+
+            <EditText
+                android:id="@+id/editTextTextPersonName3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA00E9"
+                android:ems="10"
+                android:hint="@string/address"
+                android:inputType="textPersonName"
+                android:textColorHint="#CA00E9"
+                android:layout_marginTop="5dp"/>
+
+            <EditText
+                android:id="@+id/editTextTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#CA00E9"
+                android:ems="10"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:textColorHint="#CA00E9"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/select_user_type"
+                android:textColor="#CA00E9"
+                android:textSize="16sp" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="83dp">
+
+                <RadioButton
+                    android:id="@+id/localUserRadioButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="30dp"
+                    android:buttonTint="#CA00E9"
+                    android:text="@string/local_user"
+                    android:textColor="#CA00E9" />
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="30dp"
+                    android:buttonTint="#CA00E9"
+                    android:text="@string/foreign_user"
+                    android:textColor="#CA00E9" />
+
+            </RadioGroup>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                app:srcCompat="@drawable/sign_up"
+                android:contentDescription="@string/sign_up"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/have_an_account"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/signIn"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/signIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in"
+                    android:textColor="#CA00E9"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.824"
+                    app:layout_constraintStart_toEndOf="@+id/textView11"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
