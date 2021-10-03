@@ -32,12 +32,20 @@ public class currentJourney extends AppCompatActivity {
         startTimeTextView = findViewById(R.id.startTimeValue);
         startLocationTextView = findViewById(R.id.startLocationValue);
         endTripBtn = findViewById(R.id.endTripBtn);
-        backToHomeBtn = findViewById(R.id.backToHomeBtn);
+        backToHomeBtn = findViewById(R.id.doneBtn);
 
         backToHomeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        endTripBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),eBill.class);
                 startActivity(intent);
             }
         });

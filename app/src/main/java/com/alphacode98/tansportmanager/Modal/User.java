@@ -7,6 +7,7 @@ public class User {
     private String address;
     private String nic;
     private String type;
+    private int amount;
 
     public User() {
     }
@@ -66,5 +67,13 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 }
