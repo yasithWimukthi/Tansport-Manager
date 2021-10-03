@@ -15,6 +15,9 @@ import com.alphacode98.tansportmanager.Util.LoggedUser;
 
 public class MainActivity extends AppCompatActivity {
 
+    ImageButton scanQrBtn,myQrBtn;
+
+
     private TextView usernameTextView;
     private User loggedUser;
     private ImageButton topUpBtn;
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+
         loggedUser = LoggedUser.getLoggedUser();
 
         usernameTextView = findViewById(R.id.usernameTextView);
@@ -63,5 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-}
+
+            }
+        }
