@@ -2,9 +2,12 @@ package com.alphacode98.tansportmanager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.alphacode98.tansportmanager.Modal.User;
@@ -14,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView usernameTextView;
     User loggedUser;
+    ImageButton topUpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +29,14 @@ public class MainActivity extends AppCompatActivity {
         loggedUser = LoggedUser.getLoggedUser();
 
         usernameTextView = findViewById(R.id.usernameTextView);
+        topUpBtn = findViewById(R.id.topUpBtn);
+
+        topUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),topUp.class);
+                startActivity(intent);
+            }
+        });
     }
 }
