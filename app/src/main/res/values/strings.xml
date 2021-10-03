@@ -13,4 +13,6 @@
     <string name="have_an_account">Have an Account?</string>
     <string name="sign_in">Sign In</string>
     <string name="password">Password</string>
+    <string name="top_up">Top Up</string>
+    <string name="insert_amount">Insert Amount</string>
 </resources>
