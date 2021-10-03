@@ -10,7 +10,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,8 +25,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -42,9 +39,7 @@ public class signIn extends AppCompatActivity {
     private ImageButton signInBtn;
     private TextView signUpTextView;
 
-    private FirebaseUser user;
     private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference userCollection = db.collection("users");
 
@@ -61,7 +56,7 @@ public class signIn extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         loggedUser = LoggedUser.getLoggedUser();
 
-        emailEditText = findViewById(R.id.editTextTextEmailAddress2);
+        emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         signInBtn = findViewById(R.id.signInBtn);
         signUpTextView = findViewById(R.id.signUpTxt);

@@ -27,7 +27,7 @@
                 android:textSize="25sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/nameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CA00E9"
@@ -39,7 +39,7 @@
                 />
 
             <EditText
-                android:id="@+id/editTextTextNICPassport"
+                android:id="@+id/nicEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CA00E9"
@@ -50,7 +50,7 @@
                 android:layout_marginTop="5dp"/>
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/mobileEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CA00E9"
@@ -61,7 +61,7 @@
                 android:layout_marginTop="5dp"/>
 
             <EditText
-                android:id="@+id/editTextTextEmailAddress2"
+                android:id="@+id/emailEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CA00E9"
@@ -72,7 +72,7 @@
                 android:layout_marginTop="5dp"/>
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/addressEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CA00E9"
@@ -83,7 +83,7 @@
                 android:layout_marginTop="5dp"/>
 
             <EditText
-                android:id="@+id/editTextTextPassword2"
+                android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#CA00E9"
@@ -106,7 +106,7 @@
                 android:layout_height="83dp">
 
                 <RadioButton
-                    android:id="@+id/localUserRadioButton"
+                    android:id="@+id/localUserRadio"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginStart="30dp"
@@ -115,7 +115,7 @@
                     android:textColor="#CA00E9" />
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/foreignUserRadio"
                     android:layout_width="match_parent"
                     android:layout_height="24dp"
                     android:layout_marginStart="30dp"
@@ -126,7 +126,7 @@
             </RadioGroup>
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/signUpBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
@@ -143,14 +143,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/have_an_account"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/signIn"
+                    app:layout_constraintEnd_toStartOf="@+id/signInTextView"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/signIn"
+                    android:id="@+id/signInTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sign_in"

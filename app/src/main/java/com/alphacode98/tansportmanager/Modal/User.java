@@ -5,15 +5,19 @@ public class User {
     private String mobile;
     private String email;
     private String address;
+    private String nic;
+    private String type;
 
     public User() {
     }
 
-    public User(String name, String mobile, String email, String address) {
+    public User(String name, String mobile, String email, String address, String nic, String type) {
         this.name = name;
         this.mobile = mobile;
         this.email = email;
         this.address = address;
+        this.nic = nic;
+        this.type = type;
     }
 
     public String getName() {
@@ -46,5 +50,21 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
