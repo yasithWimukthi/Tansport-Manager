@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alphacode98.tansportmanager">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,6 +16,7 @@
         <activity android:name=".signUp"></activity>
         <activity android:name=".topUp"></activity>
         <activity android:name=".currentJourney"></activity>
+        <activity android:name=".eBill"></activity>
         <activity android:name=".signIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

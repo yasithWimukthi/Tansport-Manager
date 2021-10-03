@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         usernameTextView = findViewById(R.id.usernameTextView);
         topUpBtn = findViewById(R.id.topUpBtn);
+        currentJourneyBtn = findViewById(R.id.currentJourneyBtn);
 
         topUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
