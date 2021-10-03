@@ -96,7 +96,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/startTineValue"
+                    android:id="@+id/start"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -220,7 +220,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/backToHomeBtn"
+                android:id="@+id/doneBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
