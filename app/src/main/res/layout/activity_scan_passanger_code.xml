@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="20dp"
+    android:nestedScrollingEnabled="true"
+    android:orientation="vertical"
+    tools:context=".startJourney">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="@string/scan_passenger_code"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scannerView"
+        android:layout_width="match_parent"
+        android:layout_height="376dp"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="false"
+        app:flashButtonColor="@android:color/white"
+        app:flashButtonVisible="false"
+        app:frameAspectRatioHeight="1"
+        app:frameAspectRatioWidth="1"
+        app:frameColor="@android:color/white"
+        app:frameCornersRadius="0dp"
+        app:frameCornersSize="50dp"
+        app:frameSize="0.75"
+        app:frameThickness="2dp"
+        app:maskColor="#77000000" />
+
+
+    <TextView
+        android:id="@+id/reasonTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reason"
+        android:textColor="#CA00E9"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/reasonEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="#CA00E9"
+        android:ems="10"
+        android:inputType="text" />
+    <TextView
+        android:id="@+id/amountTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fine_amount"
+        android:textColor="#CA00E9"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/amountEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:backgroundTint="#CA00E9"
+        android:ems="10"
+        android:inputType="numberDecimal" />
+
+    <ImageButton
+        android:id="@+id/startButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:srcCompat="@drawable/add_fine_btn" />
+
+
+</LinearLayout>

@@ -31,4 +31,7 @@
     <string name="genarate">Genarate</string>
     <string name="scan_bus_code">Scan Bus Code</string>
     <string name="insert_new_fine">Insert New Fine</string>
+    <string name="scan_passenger_code">Scan Passenger Code</string>
+    <string name="reason">Reason</string>
+    <string name="fine_amount">Fine Amount</string>
 </resources>
