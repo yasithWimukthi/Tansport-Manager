@@ -19,6 +19,7 @@
         <activity android:name=".currentJourney"></activity>
         <activity android:name=".startJourney"></activity>
         <activity android:name=".eBill"></activity>
+        <activity android:name=".myQR"/>
         <activity android:name=".signIn">
 
             <intent-filter>
