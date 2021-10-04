@@ -117,6 +117,7 @@ public class signIn extends AppCompatActivity {
                                         if(!value.isEmpty()){
                                             for(QueryDocumentSnapshot snapshot : value){
                                                 loggedUser.setName(snapshot.getString(CommonConstants.NAME));
+                                                loggedUser.setEmail(snapshot.getString(CommonConstants.EMAIL));
                                                 break;
                                             }
                                         }
