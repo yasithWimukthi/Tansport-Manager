@@ -29,4 +29,6 @@
     <string name="start_journey">Start Journey</string>
     <string name="my_qr_code">My QR Code</string>
     <string name="genarate">Genarate</string>
+    <string name="scan_bus_code">Scan Bus Code</string>
+    <string name="insert_new_fine">Insert New Fine</string>
 </resources>
