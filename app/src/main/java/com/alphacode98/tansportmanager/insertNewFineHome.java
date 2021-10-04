@@ -28,7 +28,7 @@ public class insertNewFineHome extends AppCompatActivity {
         insertFineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplication(), ScanPassengerCode.class));
             }
         });
 

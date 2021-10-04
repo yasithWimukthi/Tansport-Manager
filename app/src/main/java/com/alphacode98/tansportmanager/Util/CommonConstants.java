@@ -9,7 +9,9 @@ public class CommonConstants {
     public static final String USERS_COLLECTION = "users";
     public static final String CITIES_COLLECTION = "cities";
     public static final String JOURNEY_COLLECTION = "journey";
+    public static final String FINES_COLLECTION = "fines";
     public static final String EMAIL = "email";
+    public static final String PASSENGER_EMAIL = "passengerEmail";
     public static final String NAME = "name";
     public static final String EMPTY = "";
 }
