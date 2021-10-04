@@ -35,4 +35,5 @@
     <string name="reason">Reason</string>
     <string name="fine_amount">Fine Amount</string>
     <string name="fine_successfully_inserted">Fine Successfully Inserted !</string>
+    <string name="fare">Fare</string>
 </resources>
