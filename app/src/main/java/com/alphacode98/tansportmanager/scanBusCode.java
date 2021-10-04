@@ -39,7 +39,6 @@ public class scanBusCode extends AppCompatActivity {
 //                myEdit.putInt(CommonConstants.ROUTE,Integer.parseInt(result.getText()));
                 myEdit.putInt(CommonConstants.ROUTE,0);
                 myEdit.commit();
-
                 startActivity(new Intent(getApplicationContext(),insertNewFineHome.class));
             }
         });

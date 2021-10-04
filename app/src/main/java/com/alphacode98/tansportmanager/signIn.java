@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -118,6 +119,11 @@ public class signIn extends AppCompatActivity {
                                             for(QueryDocumentSnapshot snapshot : value){
                                                 loggedUser.setName(snapshot.getString(CommonConstants.NAME));
                                                 loggedUser.setEmail(snapshot.getString(CommonConstants.EMAIL));
+                                                SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
+                                                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                                                myEdit.putString(CommonConstants.EMAIL,snapshot.getString(CommonConstants.EMAIL));
+                                                myEdit.putString(CommonConstants.NAME,snapshot.getString(CommonConstants.NAME));
+                                                myEdit.commit();
                                                 break;
                                             }
                                         }
