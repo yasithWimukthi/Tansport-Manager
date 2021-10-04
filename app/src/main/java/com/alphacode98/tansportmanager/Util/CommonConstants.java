@@ -5,6 +5,7 @@ public class CommonConstants {
     public static final String TIME_FORMAT = "HH:mm:ss";
     public static final String START_TIME = "startTime";
     public static final String START_LOCATION = "startLocation";
+    public static final String ROUTE = "route";
     public static final String USERS_COLLECTION = "users";
     public static final String CITIES_COLLECTION = "cities";
     public static final String JOURNEY_COLLECTION = "journey";

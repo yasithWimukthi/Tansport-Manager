@@ -21,6 +21,8 @@
         <activity android:name=".startJourney"></activity>
         <activity android:name=".eBill"></activity>
         <activity android:name=".myQR"></activity>
+        <activity android:name=".scanBusCode"></activity>
+        <activity android:name=".insertNewFineHome"></activity>
         <activity android:name=".signIn">
 
             <intent-filter>
