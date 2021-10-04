@@ -43,16 +43,20 @@ public class myQR extends AppCompatActivity {
         testButton = findViewById(R.id.testBtn);
         doneBtn = findViewById(R.id.doneBtn2);
 
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String data = qrValue.getText().toString();
-                QRGEncoder qrgEncoder = new QRGEncoder(loggedUser.getEmail(),null, QRGContents.Type.TEXT,1000);
-                Bitmap qrBits = qrgEncoder.getBitmap();
-                qrCode.setImageBitmap(qrBits);
+        QRGEncoder qrgEncoder = new QRGEncoder(loggedUser.getEmail(),null, QRGContents.Type.TEXT,1000);
+        Bitmap qrBits = qrgEncoder.getBitmap();
+        qrCode.setImageBitmap(qrBits);
 
-            }
-        });
+//        testButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String data = qrValue.getText().toString();
+//                QRGEncoder qrgEncoder = new QRGEncoder(loggedUser.getEmail(),null, QRGContents.Type.TEXT,1000);
+//                Bitmap qrBits = qrgEncoder.getBitmap();
+//                qrCode.setImageBitmap(qrBits);
+//
+//            }
+//        });
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
