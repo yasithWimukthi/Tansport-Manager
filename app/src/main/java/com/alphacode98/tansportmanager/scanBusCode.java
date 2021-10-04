@@ -36,7 +36,8 @@ public class scanBusCode extends AppCompatActivity {
             public void onDecoded(@NonNull Result result) {
                 SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
                 SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                myEdit.putString(CommonConstants.ROUTE,result.getText());
+//                myEdit.putInt(CommonConstants.ROUTE,Integer.parseInt(result.getText()));
+                myEdit.putInt(CommonConstants.ROUTE,0);
                 myEdit.commit();
 
                 startActivity(new Intent(getApplicationContext(),insertNewFineHome.class));

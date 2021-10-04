@@ -48,7 +48,8 @@
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="#CA00E9"
                 android:ems="10"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:text="yasith@gmail.com" />
 
             <TextView
                 android:id="@+id/textView7"
@@ -66,7 +67,8 @@
                 android:layout_marginVertical="10dp"
                 android:backgroundTint="#CA00E9"
                 android:ems="10"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:text="123456" />
 
             <Space
                 android:layout_width="match_parent"

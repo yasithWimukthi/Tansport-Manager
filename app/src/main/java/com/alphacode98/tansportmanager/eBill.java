@@ -95,6 +95,7 @@ public class eBill extends AppCompatActivity {
         nameTextView.setText(loggedUser.getName());
         startTimeTextView.setText(sh.getString(CommonConstants.START_TIME,""));
         startLocationTextView.setText(sh.getString(CommonConstants.START_LOCATION,""));
+        rootNo = sh.getInt(CommonConstants.ROUTE,0);
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override

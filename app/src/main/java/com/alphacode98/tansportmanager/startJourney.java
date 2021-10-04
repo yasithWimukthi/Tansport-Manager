@@ -61,13 +61,13 @@ public class startJourney extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
-                        //resultData.setText(result.getText());
                         SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConstants.TIME_FORMAT);
                         LocalTime localTime = LocalTime.now();
                         myEdit.putString(CommonConstants.START_TIME,dtf.format(localTime));
+                        //myEdit.putInt(CommonConstants.ROUTE,Integer.parseInt(result.getText()));
                         myEdit.commit();
                         getStartLocation();
 
