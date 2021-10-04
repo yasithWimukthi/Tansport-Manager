@@ -34,4 +34,5 @@
     <string name="scan_passenger_code">Scan Passenger Code</string>
     <string name="reason">Reason</string>
     <string name="fine_amount">Fine Amount</string>
+    <string name="fine_successfully_inserted">Fine Successfully Inserted !</string>
 </resources>
