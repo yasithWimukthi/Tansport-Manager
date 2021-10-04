@@ -115,7 +115,7 @@ public class eBill extends AppCompatActivity {
         getDestination();
         //calculateCost(startLocationTextView.getText().toString(),endLocationTextView.getText().toString());
         //updateUser();
-        //saveJourney();
+        saveJourney();
     }
 
     private void updateUser() {
@@ -195,7 +195,8 @@ public class eBill extends AppCompatActivity {
         journey.setDistance(distanceTextView.getText().toString().trim());
         journey.setEndLocation(endLocationTextView.getText().toString().trim());
         journey.setEndTime(endTimeTextView.getText().toString().trim());
-        journey.setFare(Float.parseFloat(distanceTextView.getText().toString().trim()));
+        //journey.setFare(Float.parseFloat(distanceTextView.getText().toString().trim()));
+        journey.setFare(0.0f);
         journey.setRootNo(rootNo);
         journey.setStartLocation(startLocationTextView.getText().toString().trim());
         journey.setStartTime(startTimeTextView.getText().toString().trim());

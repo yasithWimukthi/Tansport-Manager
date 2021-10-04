@@ -71,7 +71,7 @@ public class startJourney extends AppCompatActivity {
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(CommonConstants.TIME_FORMAT);
                         LocalTime localTime = LocalTime.now();
                         myEdit.putString(CommonConstants.START_TIME,dtf.format(localTime));
-                        //myEdit.putInt(CommonConstants.ROUTE,Integer.parseInt(result.getText()));
+                        myEdit.putInt(CommonConstants.ROUTE,Integer.parseInt(result.getText()));
                         myEdit.commit();
                         getStartLocation();
 

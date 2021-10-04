@@ -3,6 +3,7 @@ package com.alphacode98.tansportmanager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.alphacode98.tansportmanager.Modal.User;
+import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
+        SharedPreferences sh = getSharedPreferences(CommonConstants.SHARED_PREFERENCES, MODE_PRIVATE);
 
         loggedUser = LoggedUser.getLoggedUser();
 
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         myQrBtn = findViewById(R.id.myQrBtn);
         inspectionBtn = findViewById(R.id.newInspectionBtn);
 
-        usernameTextView.setText(loggedUser.getName());
+        usernameTextView.setText(sh.getString(CommonConstants.NAME,""));
         balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
 
         topUpBtn.setOnClickListener(new View.OnClickListener() {

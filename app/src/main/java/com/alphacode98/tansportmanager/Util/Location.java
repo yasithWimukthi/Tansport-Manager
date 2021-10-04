@@ -4,16 +4,16 @@ public class Location {
     private String name;
     private float cost;
     private float distance;
-    private float routeName;
+    private float routeNumber;
 
     public Location() {
     }
 
-    public Location(String name, float cost, float distance, float routeName) {
+    public Location(String name, float cost, float distance, float routeNumber) {
         this.name = name;
         this.cost = cost;
         this.distance = distance;
-        this.routeName = routeName;
+        this.routeNumber = routeNumber;
     }
 
     public String getName() {
@@ -40,11 +40,11 @@ public class Location {
         this.distance = distance;
     }
 
-    public float getRouteName() {
-        return routeName;
+    public float getRouteNumber() {
+        return routeNumber;
     }
 
-    public void setRouteName(float routeName) {
-        this.routeName = routeName;
+    public void setRouteNumber(float routeNumber) {
+        this.routeNumber = routeNumber;
     }
 }
