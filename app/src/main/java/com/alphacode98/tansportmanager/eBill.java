@@ -62,6 +62,7 @@ public class eBill extends AppCompatActivity {
     private FusedLocationProviderClient locationProviderClient;
 
     private int rootNo;
+    private float fare;
     private SharedPreferences sh;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -184,12 +185,13 @@ public class eBill extends AppCompatActivity {
         // calculate cost
         float cost = start[0].getCost() - end[0].getCost();
         if (cost < 0) cost = -1 * cost;
-        amountTextView.setText(Float.toString(cost));
+        amountTextView.setText(Float.toString(cost) + " LKR");
+        fare = cost;
 
         // calculate distance
         float distance = start[0].getDistance() - end[0].getDistance();
         if (distance < 0) distance = -1 * distance;
-        distanceTextView.setText(Float.toString(distance));
+        distanceTextView.setText(Float.toString(distance) + " KM");
     }
 
     // SAVE JOURNEY DETAILS IN THE JOURNEY COLLECTION
@@ -199,8 +201,7 @@ public class eBill extends AppCompatActivity {
         journey.setDistance(distanceTextView.getText().toString().trim());
         journey.setEndLocation(endLocationTextView.getText().toString().trim());
         journey.setEndTime(endTimeTextView.getText().toString().trim());
-        //journey.setFare(Float.parseFloat(distanceTextView.getText().toString().trim()));
-        journey.setFare(0.0f);
+        journey.setFare(fare);
         journey.setRootNo(rootNo);
         journey.setStartLocation(startLocationTextView.getText().toString().trim());
         journey.setStartTime(startTimeTextView.getText().toString().trim());
