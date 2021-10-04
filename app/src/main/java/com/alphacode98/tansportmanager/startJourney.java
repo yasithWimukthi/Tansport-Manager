@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,7 @@ public class startJourney extends AppCompatActivity {
     private CodeScanner mCodeScanner;
     TextView resultData;
     private FusedLocationProviderClient locationProviderClient;
+    private MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class startJourney extends AppCompatActivity {
         resultData = findViewById(R.id.resultsOfQr);
         CodeScannerView scannerView = findViewById(R.id.scannerView);
         mCodeScanner = new CodeScanner(this, scannerView);
+        mp = MediaPlayer.create(this, R.raw.notification);
 
         locationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -61,6 +64,7 @@ public class startJourney extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
+                        mp.start();
                         SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
