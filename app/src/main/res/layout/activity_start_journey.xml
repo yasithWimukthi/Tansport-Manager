@@ -21,7 +21,7 @@
     <com.budiyev.android.codescanner.CodeScannerView
         android:id="@+id/scannerView"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="match_parent"
         app:autoFocusButtonColor="@android:color/white"
         app:autoFocusButtonVisible="false"
         app:flashButtonColor="@android:color/white"
@@ -34,6 +34,5 @@
         app:frameSize="0.75"
         app:frameThickness="2dp"
         app:maskColor="#77000000" />
-
 
 </LinearLayout>

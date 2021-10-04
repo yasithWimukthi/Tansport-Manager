@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -114,8 +115,14 @@ public class signUp extends AppCompatActivity {
                                 .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
+                                        SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
+                                        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                                        myEdit.putString(CommonConstants.EMAIL,email);
+                                        myEdit.putString(CommonConstants.NAME,name);
+                                        myEdit.commit();
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         startActivity(intent);
+
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
