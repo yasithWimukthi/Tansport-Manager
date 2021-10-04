@@ -62,6 +62,7 @@ public class eBill extends AppCompatActivity {
     private FusedLocationProviderClient locationProviderClient;
 
     private int rootNo;
+    private SharedPreferences sh;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -73,7 +74,7 @@ public class eBill extends AppCompatActivity {
         setContentView(R.layout.activity_ebill);
 
         loggedUser = LoggedUser.getLoggedUser();
-        SharedPreferences sh = getSharedPreferences(CommonConstants.SHARED_PREFERENCES, MODE_PRIVATE);
+        sh = getSharedPreferences(CommonConstants.SHARED_PREFERENCES, MODE_PRIVATE);
 
         nameTextView = findViewById(R.id.passengerValue);
         dateTextView = findViewById(R.id.dateValue);
@@ -113,15 +114,15 @@ public class eBill extends AppCompatActivity {
         });
 
         getDestination();
-        //calculateCost(startLocationTextView.getText().toString(),endLocationTextView.getText().toString());
-        //updateUser();
+        calculateCost(startLocationTextView.getText().toString(),endLocationTextView.getText().toString());
+        updateUser();
         saveJourney();
     }
 
+    // UPDATE USER ACCOUNT BALANCE ACCORDING TO THE COST
     private void updateUser() {
-        // update user credit balance
         final User[] user = {new User()};
-        DocumentReference docRef = db.collection(CommonConstants.USERS_COLLECTION).document(loggedUser.getEmail());
+        DocumentReference docRef = db.collection(CommonConstants.USERS_COLLECTION).document(sh.getString(CommonConstants.EMAIL,""));
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -134,6 +135,7 @@ public class eBill extends AppCompatActivity {
         db.collection(CommonConstants.USERS_COLLECTION).add(user[0]);
     }
 
+    // GET DESTINATION LOCATION
     private void getDestination() {
         if (ActivityCompat.checkSelfPermission(eBill.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<android.location.Location>() {
@@ -159,6 +161,7 @@ public class eBill extends AppCompatActivity {
     }
 
 
+    // CALCULATE COST
     private void calculateCost(String startLocation, String destination) {
         final Location[] start = {new Location()};
         final Location[] end = {new Location()};
@@ -189,6 +192,7 @@ public class eBill extends AppCompatActivity {
         distanceTextView.setText(Float.toString(distance));
     }
 
+    // SAVE JOURNEY DETAILS IN THE JOURNEY COLLECTION
     public void saveJourney(){
         Journey journey = new Journey();
         journey.setDate(dateTextView.getText().toString().trim());

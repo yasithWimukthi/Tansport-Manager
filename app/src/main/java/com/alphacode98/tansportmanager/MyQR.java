@@ -22,7 +22,7 @@ import com.google.zxing.WriterException;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
-public class myQR extends AppCompatActivity {
+public class MyQR extends AppCompatActivity {
     private ImageView qrCode;
     private ImageButton doneBtn;
     private User loggedUser;
@@ -40,6 +40,7 @@ public class myQR extends AppCompatActivity {
         qrCode = findViewById(R.id.myQrImageView);
         doneBtn = findViewById(R.id.doneBtn2);
 
+        // GENERATE QR CODE OF THE LOGGED USER
         QRGEncoder qrgEncoder = new QRGEncoder(sh.getString(CommonConstants.EMAIL,""),null, QRGContents.Type.TEXT,1000);
         Bitmap qrBits = qrgEncoder.getBitmap();
         qrCode.setImageBitmap(qrBits);

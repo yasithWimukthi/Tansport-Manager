@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
-public class insertNewFineHome extends AppCompatActivity {
+public class InsertNewFineHome extends AppCompatActivity {
 
     private ImageButton insertFineBtn;
     private ImageButton exitFromBusBtn;

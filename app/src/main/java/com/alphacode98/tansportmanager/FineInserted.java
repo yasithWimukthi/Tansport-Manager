@@ -9,7 +9,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
-public class fineInserted extends AppCompatActivity {
+public class FineInserted extends AppCompatActivity {
     ImageButton doneBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class fineInserted extends AppCompatActivity {
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),insertNewFineHome.class);
+                Intent intent = new Intent(getApplication(), InsertNewFineHome.class);
                 startActivity(intent);
             }
         });

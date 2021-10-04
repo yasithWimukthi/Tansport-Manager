@@ -18,7 +18,7 @@ import com.alphacode98.tansportmanager.Modal.User;
 import com.alphacode98.tansportmanager.Util.CommonConstants;
 import com.alphacode98.tansportmanager.Util.LoggedUser;
 
-public class currentJourney extends AppCompatActivity {
+public class CurrentJourney extends AppCompatActivity {
 
     private TextView nameTextView;
     private TextView dateTextView;

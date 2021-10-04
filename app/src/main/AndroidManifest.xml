@@ -16,17 +16,17 @@
         android:theme="@style/Theme.TansportManager">
 
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".signUp"></activity>
-        <activity android:name=".topUp"></activity>
-        <activity android:name=".currentJourney"></activity>
-        <activity android:name=".startJourney"></activity>
+        <activity android:name=".SignUp"></activity>
+        <activity android:name=".TopUp"></activity>
+        <activity android:name=".CurrentJourney"></activity>
+        <activity android:name=".StartJourney"></activity>
         <activity android:name=".eBill"></activity>
-        <activity android:name=".myQR"></activity>
-        <activity android:name=".scanBusCode"></activity>
-        <activity android:name=".insertNewFineHome"></activity>
-        <activity android:name=".fineInserted"></activity>
+        <activity android:name=".MyQR"></activity>
+        <activity android:name=".ScanBusCode"></activity>
+        <activity android:name=".InsertNewFineHome"></activity>
+        <activity android:name=".FineInserted"></activity>
         <activity android:name=".ScanPassengerCode"></activity>
-        <activity android:name=".signIn">
+        <activity android:name=".SignIn">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

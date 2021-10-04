@@ -25,7 +25,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,7 +33,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.sdsmdg.tastytoast.TastyToast;
 
-public class signIn extends AppCompatActivity {
+public class SignIn extends AppCompatActivity {
 
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -99,7 +98,7 @@ public class signIn extends AppCompatActivity {
         signUpTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),signUp.class);
+                Intent intent = new Intent(getApplication(), SignUp.class);
                 startActivity(intent);
             }
         });

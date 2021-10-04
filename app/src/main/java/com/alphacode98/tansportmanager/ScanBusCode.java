@@ -16,7 +16,7 @@ import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.Result;
 
-public class scanBusCode extends AppCompatActivity {
+public class ScanBusCode extends AppCompatActivity {
 
     private CodeScanner mCodeScanner;
 
@@ -31,6 +31,7 @@ public class scanBusCode extends AppCompatActivity {
         CodeScannerView scannerView = findViewById(R.id.scannerView);
         mCodeScanner = new CodeScanner(this, scannerView);
 
+        // SCAN QR CODE INSIDE THE BUS
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull Result result) {
@@ -38,7 +39,7 @@ public class scanBusCode extends AppCompatActivity {
                 SharedPreferences.Editor myEdit = sharedPreferences.edit();
                 myEdit.putInt(CommonConstants.ROUTE,Integer.parseInt(result.getText()));
                 myEdit.commit();
-                startActivity(new Intent(getApplicationContext(),insertNewFineHome.class));
+                startActivity(new Intent(getApplicationContext(), InsertNewFineHome.class));
             }
         });
 

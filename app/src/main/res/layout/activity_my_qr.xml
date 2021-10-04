@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context=".myQR">
+    tools:context=".MyQR">
 
     <TextView
         android:id="@+id/textView12"

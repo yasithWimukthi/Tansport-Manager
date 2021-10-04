@@ -27,7 +27,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sdsmdg.tastytoast.TastyToast;
 
-public class signUp extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     private EditText nameEditText;
     private EditText nicEditText;
@@ -64,7 +64,7 @@ public class signUp extends AppCompatActivity {
         signInTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),signIn.class);
+                Intent intent = new Intent(getApplication(), SignIn.class);
                 startActivity(intent);
             }
         });

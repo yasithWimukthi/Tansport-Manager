@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class startJourney extends AppCompatActivity {
+public class StartJourney extends AppCompatActivity {
     private CodeScanner mCodeScanner;
     TextView resultData;
     private FusedLocationProviderClient locationProviderClient;
@@ -57,6 +57,7 @@ public class startJourney extends AppCompatActivity {
 
         locationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+        //SCAN QR CODE INSIDE THE BUS
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull final Result result) {
@@ -64,7 +65,7 @@ public class startJourney extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void run() {
-                        mp.start();
+                        mp.start(); //PLAY NOTIFICATION SOUND
                         SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
                         SharedPreferences.Editor myEdit = sharedPreferences.edit();
 
@@ -102,7 +103,7 @@ public class startJourney extends AppCompatActivity {
     }
 
     private void getStartLocation() {
-        if (ActivityCompat.checkSelfPermission(startJourney.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(StartJourney.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             locationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                 @Override
                 public void onComplete(@NonNull Task<Location> task) {
@@ -110,7 +111,7 @@ public class startJourney extends AppCompatActivity {
                     if (location != null){
                         try {
                             // initialize geocoder
-                            Geocoder geocoder = new Geocoder(startJourney.this, Locale.getDefault());
+                            Geocoder geocoder = new Geocoder(StartJourney.this, Locale.getDefault());
                             //initialize address list
                             List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
                             SharedPreferences sharedPreferences = getSharedPreferences(CommonConstants.SHARED_PREFERENCES,MODE_PRIVATE);
@@ -125,7 +126,7 @@ public class startJourney extends AppCompatActivity {
                 }
             });
         }else{
-            ActivityCompat.requestPermissions(startJourney.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+            ActivityCompat.requestPermissions(StartJourney.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
         }
     }
 }

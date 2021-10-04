@@ -13,7 +13,7 @@
         android:layout_margin="20dp"
         android:nestedScrollingEnabled="true"
         android:orientation="vertical"
-        tools:context=".startJourney">
+        tools:context=".StartJourney">
 
         <TextView
             android:id="@+id/title"

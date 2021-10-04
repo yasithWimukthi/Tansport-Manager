@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class topUp extends AppCompatActivity {
+public class TopUp extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

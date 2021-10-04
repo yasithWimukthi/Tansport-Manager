@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         topUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),topUp.class);
+                Intent intent = new Intent(getApplication(), TopUp.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         currentJourneyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),currentJourney.class);
+                Intent intent = new Intent(getApplication(), CurrentJourney.class);
                 startActivity(intent);
             }
         });
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         scanQrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),startJourney.class);
+                Intent intent = new Intent(getApplication(), StartJourney.class);
                 startActivity(intent);
             }
         });
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         myQrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplication(),myQR.class);
+                Intent intent = new Intent(getApplication(), MyQR.class);
                 startActivity(intent);
             }
         });
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         inspectionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplication(),scanBusCode.class));
+                startActivity(new Intent(getApplication(), ScanBusCode.class));
             }
         });
 

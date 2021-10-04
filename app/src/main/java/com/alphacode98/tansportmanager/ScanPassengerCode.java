@@ -54,6 +54,7 @@ public class ScanPassengerCode extends AppCompatActivity {
         CodeScannerView scannerView = findViewById(R.id.scannerView);
         mCodeScanner = new CodeScanner(this, scannerView);
 
+        // SCAN PASSENGER'S QR CODE
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
             public void onDecoded(@NonNull Result result) {
@@ -123,7 +124,7 @@ public class ScanPassengerCode extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        startActivity(new Intent(getApplicationContext(),fineInserted.class));
+                        startActivity(new Intent(getApplicationContext(), FineInserted.class));
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
