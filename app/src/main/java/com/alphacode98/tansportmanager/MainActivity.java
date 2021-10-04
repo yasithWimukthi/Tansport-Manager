@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView balanceTextView;
     private ImageButton scanQrBtn;
     private ImageButton myQrBtn;
+    private ImageButton inspectionBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         balanceTextView = findViewById(R.id.balanceText);
         scanQrBtn = findViewById(R.id.scanQrBtn);
         myQrBtn = findViewById(R.id.myQrBtn);
+        inspectionBtn = findViewById(R.id.newInspectionBtn);
 
         usernameTextView.setText(loggedUser.getName());
         balanceTextView.setText(String.valueOf(loggedUser.getAmount()));
@@ -72,6 +74,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplication(),myQR.class);
                 startActivity(intent);
+            }
+        });
+
+        inspectionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(),scanBusCode.class));
             }
         });
 

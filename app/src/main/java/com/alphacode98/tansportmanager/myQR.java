@@ -21,11 +21,8 @@ import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
 public class myQR extends AppCompatActivity {
-    private EditText qrValue;
     private ImageView qrCode;
-    private Button testButton;
     private ImageButton doneBtn;
-
     private User loggedUser;
 
     @Override
@@ -37,26 +34,12 @@ public class myQR extends AppCompatActivity {
         setContentView(R.layout.activity_my_qr);
 
         loggedUser = LoggedUser.getLoggedUser();
-
-        qrValue = findViewById(R.id.testInput);
         qrCode = findViewById(R.id.myQrImageView);
-        testButton = findViewById(R.id.testBtn);
         doneBtn = findViewById(R.id.doneBtn2);
 
-        QRGEncoder qrgEncoder = new QRGEncoder(loggedUser.getEmail(),null, QRGContents.Type.TEXT,1000);
+        QRGEncoder qrgEncoder = new QRGEncoder("loggedUser.getEmail()",null, QRGContents.Type.TEXT,1000);
         Bitmap qrBits = qrgEncoder.getBitmap();
         qrCode.setImageBitmap(qrBits);
-
-//        testButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String data = qrValue.getText().toString();
-//                QRGEncoder qrgEncoder = new QRGEncoder(loggedUser.getEmail(),null, QRGContents.Type.TEXT,1000);
-//                Bitmap qrBits = qrgEncoder.getBitmap();
-//                qrCode.setImageBitmap(qrBits);
-//
-//            }
-//        });
 
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override

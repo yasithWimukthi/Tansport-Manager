@@ -31,17 +31,4 @@
         android:src="@drawable/done_btn"
         tools:ignore="DuplicateIds" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/testInput"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="textPersonName"-->
-<!--        android:hint="Test Text Input here" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/testBtn"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/genarate" />-->
 </LinearLayout>
