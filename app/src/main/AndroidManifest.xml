@@ -24,6 +24,8 @@
         <activity android:name=".myQR"></activity>
         <activity android:name=".scanBusCode"></activity>
         <activity android:name=".insertNewFineHome"></activity>
+        <activity android:name=".fineInserted"></activity>
+        <activity android:name=".scanPassangerCode"></activity>
         <activity android:name=".signIn">
 
             <intent-filter>
